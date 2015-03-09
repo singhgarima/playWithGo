@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-    fmt.Printf("hello World!\n")
+	resp, err := http.Get("http://google.com/")
+	defer resp.Body.Close()
+	if err == nil {
+		fmt.Printf(resp.Status)
+	}
+	
 }
