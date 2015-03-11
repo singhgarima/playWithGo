@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"fmt"
@@ -16,6 +16,6 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", HomeHandler)
-	http.HandleFunc("/data/", DataHandler)
+	http.HandleFunc("/data/{id:[0-9]+}", DataHandler)
 	http.ListenAndServe(":4321", nil)
 }
