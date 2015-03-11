@@ -1,2 +1,2 @@
-webserver/randomness
-webserver/main
+webserver/bin/**
+!webserver/bin/.git-keep
