@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	. "main"
 )
 
 func TestHandler(w http.ResponseWriter, r *http.Request) {

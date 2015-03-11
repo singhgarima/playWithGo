@@ -26,6 +26,6 @@ func GetOnly(h http.HandlerFunc) http.HandlerFunc {
 
 func main() {
 	http.HandleFunc("/", GetOnly(HomeHandler))
-	http.HandleFunc("/data/{id:[0-9]+}", GetOnly(DataHandler))
+	http.HandleFunc("/data/", GetOnly(DataHandler))
 	http.ListenAndServe(":4321", nil)
 }
