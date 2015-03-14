@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.3.3
+
+install:
+  - export GOPATH=$HOME/gopath/src/randomness/webserver
+
+script:
+  - go test lru_cache
+  - go test server
