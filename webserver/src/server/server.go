@@ -37,7 +37,7 @@ func GetOnly(h http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-func main() {
+func Start() {
 	cache = lru_cache.CreateCache(10)
 	cache.StoreValueForKey("some value", 1)
 	
