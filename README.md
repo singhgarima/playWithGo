@@ -5,3 +5,4 @@
 ## Running Web Server
 
 * ``. ./setup.sh``
+* ``go run webserver/src/main.go``
