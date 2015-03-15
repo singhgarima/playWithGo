@@ -68,9 +68,10 @@ func CreateCache () {
 }
 
 func DataBurst () {
+	//TODO: This needs to be converted to indefinite loop
 	interval := rand.Intn(10)
 	data := rand.Intn(100)
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10000; i++ {
 		for j := 0; j < data; j++ {
 			producer.PublishRandomData()
 		}
