@@ -1,5 +1,5 @@
 #!/bin/sh
 
 echo "Setting GOPATH"
-export GOPATH="`pwd`/webserver"
+export GOPATH="`pwd`"
 echo "GOPATH=$GOPATH"
