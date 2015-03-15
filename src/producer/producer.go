@@ -40,7 +40,7 @@ func PublishRandomData () error {
 }
 
 func PostDeliveries (channel *amqp.Channel, queue *amqp.Queue) {
-	msg := amqp_utilities.Message{strconv.Itoa(rand.Intn(1000)), strconv.Itoa(rand.Intn(100000))}
+	msg := amqp_utilities.Message{strconv.Itoa(rand.Intn(20)), strconv.Itoa(rand.Intn(100000))}
 	body, _ := json.Marshal(msg)
 
 	publish_err := channel.Publish("", queue.Name, false, false, amqp.Publishing{
