@@ -30,8 +30,9 @@ func TestGetOnly(t *testing.T) {
 
 func TestDataHandlerSuccess(t *testing.T) {
 	//setup
-	cache = lru_cache.CreateCache(10)
-	cache.StoreValueForKey("some value", 1)
+	cache := lru_cache.CreateCache(10)
+	serverCacheStore = &cache
+	serverCacheStore.StoreValueForKey("some value", 1)
 	
 	recorder := httptest.NewRecorder()
 	url := "http://foo-bar-blahblah.com/data/1"
@@ -48,8 +49,9 @@ func TestDataHandlerSuccess(t *testing.T) {
 
 func TestDataHandlerDailure(t *testing.T) {
 	//setup
-	cache = lru_cache.CreateCache(10)
-	cache.StoreValueForKey("some value", 1)
+	cache := lru_cache.CreateCache(10)
+	serverCacheStore = &cache
+	serverCacheStore.StoreValueForKey("some value", 1)
 	
 	recorder := httptest.NewRecorder()
 	url := "http://foo-bar-blahblah.com/data/2"

@@ -3,11 +3,11 @@ package server
 import (
 	"fmt"
 	"net/http"
-	"lru_cache"
 	"strconv"
+	"lru_cache"
 )
 
-var cache lru_cache.CacheStore
+var serverCacheStore *lru_cache.CacheStore
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hello WOrld!")
@@ -16,7 +16,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 func DataHandler(w http.ResponseWriter, r *http.Request) {
 	id, conversionErr := strconv.Atoi(r.URL.Path[len("/data/"):])
 	if ( conversionErr == nil ) {
-		data, searchErr := cache.GetValueForKey(id)
+		data, searchErr := serverCacheStore.GetValueForKey(id)
 		if ( searchErr == nil ) {
 	    	fmt.Fprintf(w, "Data for ID: %d is %s", id, data)
 		} else {
@@ -37,10 +37,9 @@ func GetOnly(h http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-func Start() {
-	cache = lru_cache.CreateCache(10)
-	cache.StoreValueForKey("some value", 1)
-	
+func Start(cache *lru_cache.CacheStore) {
+	serverCacheStore = cache
+
 	http.HandleFunc("/", GetOnly(HomeHandler))
 	http.HandleFunc("/data/", GetOnly(DataHandler))
 	http.ListenAndServe(":4321", nil)
